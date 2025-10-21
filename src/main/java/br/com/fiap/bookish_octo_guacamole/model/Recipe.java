@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
+@NoArgsConstructor
 public class Recipe {
 }
