@@ -29,3 +29,22 @@ stages:
 
           - publish: $(Build.ArtifactStagingDirectory)
             artifact: webapp
+
+  - stage: Deploy
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: AzureDeployment
+        strategy:
+          runOnce:
+            deploy:
+              pool:
+                vmImage: ubuntu-latest
+              steps:
+                - task: AzureWebApp@1
+                  displayName: "Azure Web App Deploy: spring-hello-vsc-pf2128373"
+                  inputs:
+                    azureSubscription: f503da24-ed17-44cd-9ad1-38d110a621f3
+                    appType: webAppLinux
+                    appName: spring-hello-vsc-pf2128373
+                    package: "$(Pipeline.Workspace)/drop/**/target/*.jar"
