@@ -35,6 +35,7 @@ stages:
     condition: succeeded()
     jobs:
       - deployment: AzureDeployment
+        environment: production
         strategy:
           runOnce:
             deploy:
