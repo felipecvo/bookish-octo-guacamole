@@ -67,4 +67,4 @@ stages:
                     azureSubscription: f503da24-ed17-44cd-9ad1-38d110a621f3
                     appType: webAppLinux
                     appName: spring-hello-vsc-pf2128373
-                    package: "$(Pipeline.Workspace)/webapp/**/target/*.jar"
+                    package: "$(Pipeline.Workspace)/webapp/build/libs/*.jar"
