@@ -1,7 +1,6 @@
 package br.com.fiap.bookish_octo_guacamole.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import br.com.fiap.bookish_octo_guacamole.model.Recipe;
