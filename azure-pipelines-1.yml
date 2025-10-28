@@ -54,7 +54,7 @@ stages:
         displayName: Build and push docker image
         pool:
           vmImage: ubuntu-latest
-        dependsOn: Build
+        dependsOn: gradleBuild
         condition: succeeded()
         steps:
           - task: Docker@2
