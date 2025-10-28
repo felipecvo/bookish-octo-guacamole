@@ -49,3 +49,19 @@ stages:
 
           - publish: $(Build.ArtifactStagingDirectory)
             artifact: drop
+      
+      - job: BuildAndPushImage
+        displayName: Build and push docker image
+        pool:
+          vmImage: ubuntu-latest
+        dependsOn: Build
+        condition: succeeded()
+        steps:
+          - task: Docker@2
+            inputs:
+              command: login
+              containerRegistry: dimdim
+          - task: Docker@2
+            inputs:
+              command: buildAndPush
+              repository: testdfsfsdfsfds.azurecr.io/guacamole
