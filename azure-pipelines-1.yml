@@ -100,5 +100,5 @@ stages:
                         --registry-login-server pf2128sprint42tdsa.azurecr.io \
                         --registry-username $(ACR_USERNAME) \
                         --registry-password $(ACR_PASSWORD) \
-                        --location eastus2
+                        --location eastus2 \
                         --restart-policy Always
