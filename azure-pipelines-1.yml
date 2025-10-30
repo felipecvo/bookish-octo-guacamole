@@ -68,3 +68,36 @@ stages:
               tags: |
                 latest
                 $(Build.BuildId)
+
+  - stage: Deploy
+    displayName: "CD (deploy do app)"
+    dependsOn: Build
+    condition: succeeded()
+    pool:
+      vmImage: ubuntu-latest
+    jobs:
+      - deployment: deployApp
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  inputs:
+                    azureSubscription: f503da24-ed17-44cd-9ad1-38d110a621f3
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az container create \
+                        -g rg-2tdsa-sprint4 \
+                        -n guacamoleapp2128 \
+                        --image pf2128sprint42tdsa.azurecr.io/guacamole \
+                        --ports 8080 \
+                        --cpu 1 \
+                        --memory 2 \
+                        --os-type Linux \
+                        --ip-address Public \
+                        --registry-login-server pf2128sprint42tdsa.azurecr.io \
+                        --registry-username $(ACR_USERNAME) \
+                        --registry-password $(ACR_PASSWORD) \
+                        --location eastus2
+                        --restart-policy Always
