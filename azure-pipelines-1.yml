@@ -104,11 +104,11 @@ stages:
                         --location eastus2 \
                         --restart-policy Always
 
-      # - job: deployWebApp
-      #   steps:
-      #     - task: AzureWebAppContainer@1
-      #       displayName: "Deploy to WebApp"
-      #       inputs:
-      #         azureSubscription: $(azureSubscription)
-      #         appName: pf2128guacamole
-      #         containerRegistry: pf2128sprint42tdsa.azurecr.io/guacamole:latest
+      - job: deployWebApp
+        steps:
+          - task: AzureWebAppContainer@1
+            displayName: "Deploy to WebApp"
+            inputs:
+              azureSubscription: $(azureSubscription)
+              appName: pf2128guacamole
+              containerRegistry: pf2128sprint42tdsa.azurecr.io/guacamole:latest
